@@ -24,7 +24,7 @@ examples = [
 The Doge had 23 bones. If he used 6 for breakfast and stole 8 from Cheems, how many bones does Doge now have?'''],
     ["sunset.jpg", "What time of the day is it?"],
     ["forbidden.webp", "What dynasty was this built in?"],
-    ["pizza.jpg", "What ingredients do I need to cook it?"] # Generate more tokens.
+    ["pizza.jpg", "What ingredients do I need to cook it?"],
     ["flower.jpg", "What is the name of this flower?"],
     ["", '''Which of these sentences doesn't make sense?
 Options:
