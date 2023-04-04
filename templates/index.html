@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <h1>Image Uploader</h1>
+    <form id="upload-image" enctype="multipart/form-data">
+        <label for="image">Select an image</label>
+        <!-- Image will be 150 px X 150 px -->
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <button type="submit">Upload Image</button>
+    </form>
+    <div id="image-upload-result"></div>
+    <p>Prompting T5-Style models is different than prompting Decoder only models. We appreciate sharing the tips and tricks to prompt these models.</p>
+    <form id="generate-text">
+        <label for="input">Input:</label>
+        <textarea id="input" name="input" rows="5" required style="width:50%;" required>Write the question here.</textarea>
+        <br>
+
+        <label for="max-tokens">Max Tokens Generated. Exit's early if EOS is reached.:</label>
+        <input type="range" id="maxTokens" name="maxTokens" min="0" max="200" step="1" value="20" oninput="maxTokensNumber.value = this.value">
+        <input type="number" id="maxTokensNumber" name="maxTokensNumber" min="0" max="200" step="1" value="20" oninput="maxTokens.value = this.value">
+        <br>
+
+        <label for="temperature">Temperature:</label>
+        <input type="range" id="temperature" name="temperature" min="0" max="5" step="0.1" value="0.7" oninput="temperatureNumber.value = this.value">
+        <input type="number" id="temperatureNumber" name="temperatureNumber" min="0" max="5" step="0.1" value="0.7" oninput="temperature.value = this.value">
+        <br>
+
+        <label for="top-k">Top K:</label>
+        <input type="range" id="topK" name="topK" min="1" max="100" step="1" value="40" oninput="topKNumber.value = this.value">
+        <input type="number" id="topKNumber" name="topKNumber" min="1" max="100" step="1" value="40" oninput="topK.value = this.value">
+        <br>
+
+        <label for="top-p">Top P:</label>
+        <input type="range" id="topP" name="topP" min="0" max="1" step="0.05" value="0.95" oninput="topPNumber.value = this.value">
+        <input type="number" id="topPNumber" name="topPNumber" min="0" max="1" step="0.05" value="0.95" oninput="topP.value = this.value">
+        <br>
+
+        <label for="repeat-penalty">Repeat Penalty:</label>
+        <input type="range" id="repeatPenalty" name="repeatPenalty" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenaltyNumber.value = this.value">
+        <input type="number" id="repeatPenalty-number" name="repeatPenaltyNumber" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenalty.value = this.value">
+        <br>
+
+        <label for="seed">Seed:</label>
+        <input type="range" id="seed" name="seed" min="0" max="10000" step="1" value="42" oninput="seedNumber.value = this.value">
+        <input type="number" id="seedNumber" name="seed-number" min="0" max="10000" step="1" value="42" oninput="seed.value = this.value">
+        <br>
+
+        <button type="submit" value="Submit">Generate</button>
+    </form>
+    <div>We are still figuring out newlines with T5. All the generated text will appear in one line.</div>
+    <div id="text-generated-result"></div>
+    <script src="/static/main.js"></script>
+</body>
+</html>

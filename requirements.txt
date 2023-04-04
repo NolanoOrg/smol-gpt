@@ -1,0 +1,7 @@
+opencv-python
+flask
+flask-sse
+torch
+transformers
+sentencepiece
+Pillow
