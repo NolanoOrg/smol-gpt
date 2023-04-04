@@ -52,9 +52,5 @@ MIT
 - Nolano Discord: https://discord.gg/sWQsr4FE
 - GitHub Issues.
 
-## Scope and Limitations of this README
-Given both the competitive landscape and the safety implications of _smol_ large-scale models like Smol GPT, this README contains no further details about the architecture (including model size), hardware, training compute, dataset construction, training method, or similar [1].
-
-### References
-[1] GPT-4 Technical Report, Team OpenAI, 2023
+### Misc
 The model used are Clip and Bert following [Blip-2](https://huggingface.co/Salesforce/blip2-flan-t5-xxl) and Flan-T5 for instruction following.
