@@ -4,58 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Uploader</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- <link rel="stylesheet" href="/static/css/styles.css"> -->
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin-left: 100px;
+            margin-right: 140px;
+
+            padding:0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 20px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+            width: 80%;
+        }
+
+        .result-block {
+            border: 2px solid #333;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        button {
+            background-color: #6f0e62;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #8c1b81;
+        }
+
+        #text-generated-result {
+            padding-bottom: 20px;
+        }
+
+        .container {
+                display: flex;
+                justify-content: space-between;
+        }
+
+        .left-side {
+            width: 50%;
+        }
+
+        .right-side {
+            width: 50%;
+        }
+
+        #image-upload-result {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            font-size: 20px;
+        }
+
+        .left-side, .right-side {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Uploader</h1>
-    <form id="upload-image" enctype="multipart/form-data">
-        <label for="image">Select an image</label>
-        <!-- Image will be 150 px X 150 px -->
-        <input type="file" id="image" name="image" accept="image/*" required>
+    <header style="display:flex; align-items:center; justify-content:space-between; font-family:'Montserrat', sans-serif; padding:10px;">
+        <div style="display:flex; align-items:center;">
+            <img src="https://www.nolano.org/images/logo/logo.jpg" alt="Nolano Logo" width="50" height="50" style="margin-right:30px; ">
+            <h2 style="font-family:'Lobster', cursive; color:#6f0e62; margin: 30px 50px;">Smol GPT-4</h2>
+        </div>
+        <div class="social-links" style="display:flex; align-items:center; gap:5px;">
+            <a href="https://discord.com/invite/HGujTPQtR6"><img src="../static/logo/discord_logo.svg" alt="Discord Logo" height="30" width="30"></a>
+            <a href="https://twitter.com/NolanoOrg"><img src="../static/logo/twitter.png" alt="Twitter Logo" height="30" width="42"></a>
+            <a href="https://github.com/NolanoOrg"><img src="../static/logo/github.png" alt="GitHub Logo" height="30" width="30"></a>
+        </div>
+    </header>
+    <p style="font-family:'Montserrat', sans-serif; font-size:1.0rem; color:#666666; margin-top:-20px;">Smol, but mighty Language Model! </p>
+    <br>
 
-        <button type="submit">Upload Image</button>
-    </form>
-    <div id="image-upload-result"></div>
-    <p>Prompting T5-Style models is different than prompting Decoder only models. We appreciate sharing the tips and tricks to prompt these models.</p>
-    <form id="generate-text">
-        <label for="input">Input:</label>
-        <textarea id="input" name="input" rows="5" required style="width:50%;" required>Write the question here.</textarea>
-        <br>
+    <div class="container">
+        <div class="left-side">
+            <form id="upload-image" enctype="multipart/form-data">
+                <div class="upload-input-container">
+                    <label for="image">Select an image</label>
+                    <!-- Image will be 150 px X 150 px -->
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="upload-button-container">
+                    <button type="submit" id="upload-button">Upload Image</button>
+                    <button type="button" id="remove-button" disabled>Remove Image</button>
+                </div>
+            </form>
+            <div id="image-upload-result"></div>
 
-        <label for="max-tokens">Max Tokens Generated. Exit's early if EOS is reached.:</label>
-        <input type="range" id="maxTokens" name="maxTokens" min="0" max="200" step="1" value="20" oninput="maxTokensNumber.value = this.value">
-        <input type="number" id="maxTokensNumber" name="maxTokensNumber" min="0" max="200" step="1" value="20" oninput="maxTokens.value = this.value">
-        <br>
+            <form id="generate-text">
+                <label for="input">
+                    <textarea id="input" name="input" rows="7" required style="width:100%;" required>Q: What is unusual about this picture? A:</textarea>
+                </label>
+                <button type="submit" value="Submit">Generate</button>
+            </form>
 
-        <label for="temperature">Temperature:</label>
-        <input type="range" id="temperature" name="temperature" min="0" max="5" step="0.1" value="0.7" oninput="temperatureNumber.value = this.value">
-        <input type="number" id="temperatureNumber" name="temperatureNumber" min="0" max="5" step="0.1" value="0.7" oninput="temperature.value = this.value">
-        <br>
+            <div id="text-generated-result" class="result-block"></div>
+            <p>Prompting T5-Style models is different than prompting Decoder only models. We appreciate sharing the tips and tricks to prompt these models.</p>
+        </div>
+        <div class="right-side">
+            <form id="slider-controls">
+                <label for="max-tokens">
+                    <span>Max Tokens Generated:</span>
+                    <div>
+                        <input type="range" id="maxTokens" name="maxTokens" min="0" max="200" step="1" value="20" oninput="maxTokensNumber.value = this.value">
+                        <input type="number" id="maxTokensNumber" name="maxTokensNumber" min="0" max="200" step="1" value="20" oninput="maxTokens.value = this.value">
+                    </div>
+                </label>
+                <br>
+                <label for="temperature">
+                    <span>Temperature:</span>
+                    <div>
+                        <input type="range" id="temperature" name="temperature" min="0" max="5" step="0.1" value="0.0" oninput="temperatureNumber.value = this.value">
+                        <input type="number" id="temperatureNumber" name="temperatureNumber" min="0" max="5" step="0.1" value="0.0" oninput="temperature.value = this.value">
+                    </div>
+                </label>
+                <br>
 
-        <label for="top-k">Top K:</label>
-        <input type="range" id="topK" name="topK" min="1" max="100" step="1" value="40" oninput="topKNumber.value = this.value">
-        <input type="number" id="topKNumber" name="topKNumber" min="1" max="100" step="1" value="40" oninput="topK.value = this.value">
-        <br>
+                <label for="top-k">
+                    <span>Top K:</span>
+                    <div>
+                        <input type="range" id="topK" name="topK" min="1" max="100" step="1" value="40" oninput="topKNumber.value = this.value">
+                        <input type="number" id="topKNumber" name="topKNumber" min="1" max="100" step="1" value="40" oninput="topK.value = this.value">
+                    </div>
+                </label>
+                <br>
 
-        <label for="top-p">Top P:</label>
-        <input type="range" id="topP" name="topP" min="0" max="1" step="0.05" value="0.95" oninput="topPNumber.value = this.value">
-        <input type="number" id="topPNumber" name="topPNumber" min="0" max="1" step="0.05" value="0.95" oninput="topP.value = this.value">
-        <br>
+                <label for="top-p">
+                    <span>Top P:</span>
+                    <div>
+                        <input type="range" id="topP" name="topP" min="0" max="1" step="0.05" value="0.95" oninput="topPNumber.value = this.value">
+                        <input type="number" id="topPNumber" name="topPNumber" min="0" max="1" step="0.05" value="0.95" oninput="topP.value = this.value">
+                    </div>
+                </label>
+                <br>
 
-        <label for="repeat-penalty">Repeat Penalty:</label>
-        <input type="range" id="repeatPenalty" name="repeatPenalty" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenaltyNumber.value = this.value">
-        <input type="number" id="repeatPenalty-number" name="repeatPenaltyNumber" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenalty.value = this.value">
-        <br>
+                <label for="repeat-penalty">
+                    <span>Repeat Penalty:</span>
+                    <div>
+                        <input type="range" id="repeatPenalty" name="repeatPenalty" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenaltyNumber.value = this.value">
+                        <input type="number" id="repeatPenalty-number" name="repeatPenaltyNumber" min="0" max="10" step="0.25" value="1.25" oninput="repeatPenalty.value = this.value">
+                    </div>
+                </label>
+                <br>
 
-        <label for="seed">Seed:</label>
-        <input type="range" id="seed" name="seed" min="0" max="10000" step="1" value="42" oninput="seedNumber.value = this.value">
-        <input type="number" id="seedNumber" name="seed-number" min="0" max="10000" step="1" value="42" oninput="seed.value = this.value">
-        <br>
-
-        <button type="submit" value="Submit">Generate</button>
-    </form>
-    <div>We are still figuring out newlines with T5. All the generated text will appear in one line.</div>
-    <div id="text-generated-result"></div>
+                <label for="seed">
+                    <span>Seed:</span>
+                    <div>
+                        <input type="range" id="seed" name="seed" min="0" max="10000" step="1" value="42" oninput="seedNumber.value = this.value">
+                        <input type="number" id="seedNumber" name="seed-number" min="0" max="10000" step="1" value="42" oninput="seed.value = this.value">
+                    </div>
+                </label>
+                <br>
+            </form>
+        </div>
+    </div>
     <script src="/static/main.js"></script>
-</body>
+    </body>
 </html>

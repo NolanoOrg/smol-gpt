@@ -1,3 +1,4 @@
+.DS_Store
 cpp/*.o
 cpp/main
 cpp/quantize_t5v1_1

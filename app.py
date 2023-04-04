@@ -19,12 +19,17 @@ from flask_sse import sse
 TEMP_IMAGE_SAVE_PATH = "tmp.jpg"
 
 examples = [
-    ["", 'Which of these sentences doesn\'t make sense?\nOptions:\n- Sentence A: "He raised a microwave with his hands."\n- Sentence B: "He lifted a truck with his hands."'],
-    ["", 'Translate English to Spanish: Given both the competitive landscape and the safety implications of large-scale models like GPT-4, this report contains no further details about the architecture (including model size), hardware, training compute, dataset construction, training method, or similar.'],
-    ["", 'Answer the following question by reasoning step-by-step.\nThe doge had 23 bones. If he used 6 for breakfast and stole 8 from cheems, how many bones does he now have?'],
-    ["cute_pics.png", "Q: What is unusual about this picture?\nA:"],
+    ["", '''Which of these sentences doesn't make sense?
+Options:
+- Sentence A: "He raised a microwave with his hands."
+- Sentence B: "He lifted a truck with his hands."'''],
+    ["", '''Answer the following question by reasoning step-by-step.
+The Doge had 23 bones. If he used 6 for breakfast and stole 8 from Cheems, how many bones does Doge now have?'''],
+    ["cute_pics.png", "Q: What is unusual about this picture? A:"],
+    ["flower.jpg", "What is the name of this flower?"],
+    ["forbidden.webp", "What dynasty was this built in?"],
     ["sunset.jpg", "What time of the day is it?"],
-    ["pizza.jpg", "What ingredients do I need to cook it?"],
+    ["pizza.jpg", "What ingredients do I need to cook it?"] # Generate more tokens.
 ]
 
 def download_if_not_exists(filename, url):

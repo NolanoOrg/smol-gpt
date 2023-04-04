@@ -1,4 +1,23 @@
-let image_path = "";
+let image_path = "cute_pics.png";
+
+
+//let imageUploadResultDiv = document.getElementById('image-upload-result');
+// imageUploadResultDiv.innerHTML = `<img src="/static/images/${image_path}?${timestamp}" alt="Uploaded image" width="150" height="150">`;
+// On document load set default image path
+let has_set_default_image = false;
+document.addEventListener('DOMContentLoaded', function() {
+    // sleep for 1 second just to make sure document is loaded
+    setTimeout(function() {
+        if (has_set_default_image) {
+            return;
+        }
+        const timestamp = new Date().getTime();
+        const imageUploadResultDiv = document.getElementById('image-upload-result');
+        imageUploadResultDiv.innerHTML = `<img src="/static/images/${image_path}?${timestamp}" alt="Uploaded image" width="150" height="150">`;
+        has_set_default_image = true;
+        removeButton.disabled = false;
+    }, 1000);
+});
 
 document.getElementById('upload-image').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -21,6 +40,29 @@ document.getElementById('upload-image').addEventListener('submit', async functio
         imageUploadResultDiv.innerHTML = `<p>Image upload failed</p>`;
     }
 });
+
+const uploadButton = document.getElementById('upload-button');
+const removeButton = document.getElementById('remove-button');
+const imageInput = document.getElementById('image');
+const imageUploadResultDiv = document.getElementById('image-upload-result');
+
+// add event listener for file input change
+imageInput.addEventListener('change', function() {
+    if (imageInput.files.length > 0) {
+        removeButton.disabled = false;
+    } else {
+        removeButton.disabled = true;
+    }
+});
+
+// add event listener for remove button click
+removeButton.addEventListener('click', function() {
+    image_path = "";
+    imageInput.value = '';
+    imageUploadResultDiv.innerHTML = '';
+    removeButton.disabled = true;
+});
+
 
 document.getElementById('generate-text').addEventListener('submit', function (event) {
     event.preventDefault(); // prevent the form from submitting in the default way
