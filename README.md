@@ -16,7 +16,6 @@ The implementation may contain bugs and int4 quantization performed is not optim
 3. `cd ..`
 4. `python3 app.py` (May take a few minutes to download and load the model)
 5. `Open `http://127.0.0.1:4241/` in your browser.`
-```
 
 ## Contributing
 
