@@ -1,7 +1,7 @@
 # Smol GPT
 
 Multimodal instruction-following model for text generation that runs on your CPU.
-Less than 12 GB of RAM required.
+Less than 14 GB of RAM required.
 
 ![Demo](./assets/demo.gif)
 
