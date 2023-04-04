@@ -1,4 +1,4 @@
-# Smol GPT-4
+# Smol GPT
 
 Multimodal instruction-following model for text generation that runs on your CPU.
 Less than 12 GB of RAM required.
@@ -12,7 +12,7 @@ The implementation may contain bugs and int4 quantization performed is not optim
 
 ## Usage
 
-0. `git clone https://github.com/nolanoOrg/smol-gpt4`
+0. `git clone https://github.com/nolanoOrg/smol-gpt`
 1. `pip install -r requirements.txt`
 2. `cd cpp && make`
 3. `cd ..`
