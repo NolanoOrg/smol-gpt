@@ -10,12 +10,12 @@ The implementation may contain bugs and int4 quantization performed is not optim
 
 ## Usage
 
-```
-pip install -r requirements.txt
-cd cpp && make
-cd ..
-python3 app.py
-Open `http://127.0.0.1:4241/` in your browser.
+0. `git clone https://github.com/nolanoOrg/smol-gpt4`
+1. `pip install -r requirements.txt`
+2. `cd cpp && make`
+3. `cd ..`
+4. `python3 app.py` (May take a few minutes to download and load the model)
+5. `Open `http://127.0.0.1:4241/` in your browser.`
 ```
 
 ## Contributing
