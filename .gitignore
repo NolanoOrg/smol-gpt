@@ -2,7 +2,7 @@
 cpp/*.o
 cpp/main
 cpp/quantize_t5v1_1
-static/images/tmp.png
+static/images/tmp.*
 models
 tmp_file.txt
 
