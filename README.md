@@ -3,6 +3,8 @@
 Multimodal instruction-following model for text generation that runs on your CPU.
 Less than 12 GB of RAM required.
 
+![Demo](./assets/demo.gif)
+
 ## Disclaimer
 Models hallucinates - this is meant for fun. We do not recommend using the model in production - unless you ~~hallucinate for a living~~ know what you are doing.
 
