@@ -57,3 +57,4 @@ Given both the competitive landscape and the safety implications of _smol_ large
 
 ### References
 [1] GPT-4 Technical Report, Team OpenAI, 2023
+The model used are Clip and Bert following [Blip-2](https://huggingface.co/Salesforce/blip2-flan-t5-xxl) and Flan-T5 for instruction following.
