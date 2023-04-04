@@ -39,7 +39,7 @@ Contributions are welcome. Please open an issue or a PR. New features will be co
     - Integrate CALM (https://arxiv.org/abs/2207.07061) for 2x speedup during generation.
     - Translate Vision and Bert model to C.
 - MMap Speed up.
-- Support Smoller GPT 4 for running multimodal models in 4 GB of RAM.
+- Support Smoller GPT for running multimodal models in 4 GB of RAM.
 
 ## Unknowns about the model
 - Performance on multiple collated images.
@@ -53,7 +53,7 @@ MIT
 - GitHub Issues.
 
 ## Scope and Limitations of this README
-Given both the competitive landscape and the safety implications of _smol_ large-scale models like Smol GPT-4, this README contains no further details about the architecture (including model size), hardware, training compute, dataset construction, training method, or similar [1].
+Given both the competitive landscape and the safety implications of _smol_ large-scale models like Smol GPT, this README contains no further details about the architecture (including model size), hardware, training compute, dataset construction, training method, or similar [1].
 
 ### References
 [1] GPT-4 Technical Report, Team OpenAI, 2023
